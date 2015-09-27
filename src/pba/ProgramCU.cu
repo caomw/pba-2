@@ -128,10 +128,8 @@ int ProgramCU::CheckErrorCUDA(const char* location)
         if(location) fprintf(stderr, "%s:\t",  location);
         fprintf(stderr, "%s(%d)\n", cudaGetErrorString(e), e);
         throw location;
-        return 1;
     }else
     {
-        //fprintf(stderr, "%s:\n",  location);
         return 0;
     }
 }
