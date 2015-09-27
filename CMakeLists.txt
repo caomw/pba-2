@@ -27,6 +27,8 @@ IF(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     "MinSizeRel" "RelWithDebInfo")
 ENDIF()
 
+SET(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -O2 -mfpmath=sse -fPIC")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -O2 -mfpmath=sse -fPIC")
 
 ####
 # find threads
@@ -53,9 +55,12 @@ if(CPUPBA_USE_AVX)
   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx")
 endif()
 
-SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -Wall -Werror -O2 -mfpmath=sse -fPIC")
-SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS} -Wall -Werror -O2 -mfpmath=sse -fPIC")
-SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -Wall -Werror -g -O2 -fPIC")
-
 ADD_SUBDIRECTORY(src/pba)
 ADD_SUBDIRECTORY(src/driver)
+
+INSTALL(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/pba
+  DESTINATION include/
+  COMPONENT headers
+  FILES_MATCHING PATTERN "*.hpp" PATTERN "*.h"
+)

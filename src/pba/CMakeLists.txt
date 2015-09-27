@@ -19,7 +19,6 @@ IF(CUDA_FOUND)
   SET_TARGET_PROPERTIES(pba PROPERTIES
                             SOVERSION 1
                             VERSION 1.5.0)
-
 ELSE()
 
   SET(SRCS pba.cpp
@@ -35,3 +34,4 @@ ELSE()
 
 ENDIF()
 
+INSTALL(TARGETS pba DESTINATION "lib${LIB_SUFFIX}")
