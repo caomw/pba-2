@@ -298,8 +298,11 @@ struct CameraT_
     template <class Float>     void GetInvertedRT (Float e[3], Float T[3]) const
     {
         CameraT ci;    ci.SetMatrixRotation(m[0]);
-        for(int i = 3; i < 9; ++i) ci.m[0][i] = - ci.m[0][i];
-        //for(int i = 1; i < 3; ++i) for(int j = 0; j < 3; ++j) ci.m[i][j] = - ci.m[i][j];
+
+        ci.m[1][0] *= -1; ci.m[2][0] *= -1;
+        ci.m[1][1] *= -1; ci.m[2][1] *= -1;
+        ci.m[1][2] *= -1; ci.m[2][2] *= -1;
+
         ci.GetRodriguesRotation(e);
         GetTranslation(T);    T[1] = - T[1]; T[2] = -T[2];
     }
