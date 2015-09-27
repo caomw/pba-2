@@ -244,18 +244,15 @@ struct CameraT_
     ////////////////////////////////////////////////
     template <class Float> void SetMatrixRotation(const Float * r)
     {
-        for(int i = 0; i < 3; ++i)
-        {
-            for(int j = 0; j < 3; ++i)
-            {
-                int k = i*3 + j;
-                m[i][j] = float_t(r[k]);
-            }
-        }
+        m[0][0] = float_t(r[0]); m[0][1] = float_t(r[1]); m[0][2] = float_t(r[2]);
+        m[1][0] = float_t(r[3]); m[1][1] = float_t(r[4]); m[1][2] = float_t(r[5]);
+        m[2][0] = float_t(r[6]); m[2][1] = float_t(r[7]); m[2][2] = float_t(r[8]);
     }
-    template <class Float>    void GetMatrixRotation(Float * r) const
+    template <class Float> void GetMatrixRotation(Float * r) const
     {
-        for(int i = 0; i < 9; ++i) r[i] = Float(m[0][i]);
+        r[0] = Float(m[0][0]); r[1] = Float(m[0][1]); r[2] = Float(m[0][2]);
+        r[3] = Float(m[0][3]); r[4] = Float(m[0][4]); r[5] = Float(m[0][5]);
+        r[6] = Float(m[0][6]); r[7] = Float(m[0][7]); r[8] = Float(m[0][8]);
     }
     float GetRotationMatrixDeterminant()const
     {
@@ -267,13 +264,13 @@ struct CameraT_
                m[0][0]*m[1][2]*m[2][1];
     }
     ///////////////////////////////////////
-    template <class Float>    void SetTranslation(const Float T[3])
+    template <class Float> void SetTranslation(const Float T[3])
     {
         t[0] = (float_t)T[0];
         t[1] = (float_t)T[1];
         t[2] = (float_t)T[2];
     }
-    template <class Float>    void GetTranslation(Float T[3])  const
+    template <class Float> void GetTranslation(Float T[3])  const
     {
         T[0] = (Float)t[0];
         T[1] = (Float)t[1];
