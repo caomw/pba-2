@@ -6,6 +6,6 @@ Parralel Bundle Adjustment
 
 Some Changes:
 
- - CMake infrstructure.
+ - CMake infrastructure.
  - Fixed AVX2 for GCC / Linux.
  - No compile warns, clean code.
